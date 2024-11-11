@@ -71,11 +71,10 @@ img {
 
 /* Main Styling */
 body {
-    margin: 1em;
+    display: flex;
     height: 100svh;
-    width: 26em;
-    justify-self: center;
-    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
@@ -83,6 +82,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 26em;
     padding: 1em;
     gap: 1em;
     /* height: 100svh; */
