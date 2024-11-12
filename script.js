@@ -13,6 +13,7 @@ const unmute_icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
 const progress = document.getElementById("progress");
 const current_time = document.getElementById("current-time");
 const total_duration = document.getElementById("total-duration");
+const music_lists_ui = document.getElementById("music-list");
 const music_list = [
     {
         name: "Dil Tu Hi Bataa",
@@ -52,7 +53,36 @@ function loadMusic(i) {
     music_name.textContent = music.name;
     audio.src = music.audio_path;
     cover_art.src = music.cover_art_path;
-    // audio.play();
+    // document.getElementById("progress").value = 0;
+}
+
+for (let m_count = 0; m_count < music_list.length; m_count++) {
+    music_lists_ui.insertAdjacentHTML(
+        "beforeend",
+        `
+        <li class="music-item" data-index="${m_count}">
+            <div class="music-cover-art-list">
+                <img id="cover-art-list" src="${music_list[m_count].cover_art_path}" alt="" />
+            </div>
+            <p>${music_list[m_count].name}</p>
+        </li>
+    `
+    );
+}
+
+// Add event listeners to each music item
+document.querySelectorAll(".music-item").forEach((item) => {
+    item.addEventListener("click", function () {
+        const index = this.getAttribute("data-index");
+        loadMusic(index);
+        playMusic(index);
+    });
+});
+
+function playMusic(index) {
+    const music = music_list[index];
+    audio.src = music.audio_path;
+    audio.play();
 }
 
 loadMusic(current_music);
@@ -66,6 +96,7 @@ audio.addEventListener("play", () => {
 audio.addEventListener("ended", () => {
     current_music = (current_music + 1) % music_list.length;
     loadMusic(current_music);
+    // document.getElementById("progress").value = 0;
     audio.play();
 });
 
