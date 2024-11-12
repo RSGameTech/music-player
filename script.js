@@ -53,7 +53,9 @@ function loadMusic(i) {
     music_name.textContent = music.name;
     audio.src = music.audio_path;
     cover_art.src = music.cover_art_path;
-    // document.getElementById("progress").value = 0;
+    progress.value = 0; // Reset progress bar value
+    current_time.textContent = "00:00"; // Reset current time display
+    total_duration.textContent = "00:00"; // Reset total duration display
 }
 
 for (let m_count = 0; m_count < music_list.length; m_count++) {
@@ -74,6 +76,7 @@ for (let m_count = 0; m_count < music_list.length; m_count++) {
 document.querySelectorAll(".music-item").forEach((item) => {
     item.addEventListener("click", function () {
         const index = this.getAttribute("data-index");
+        current_music = index; // Update current_music index
         loadMusic(index);
         playMusic(index);
     });
@@ -83,7 +86,19 @@ function playMusic(index) {
     const music = music_list[index];
     audio.src = music.audio_path;
     audio.play();
+    document.body.style.backgroundImage = `url(${music.cover_art_path})`;
 }
+
+audio.addEventListener("pause", () => {
+    play_pause.innerHTML = play_icon;
+    document.body.style.backgroundImage = "none"; // Revert to original background
+});
+
+audio.addEventListener("play", () => {
+    play_pause.innerHTML = pause_icon;
+    const music = music_list[current_music];
+    document.body.style.backgroundImage = `url(${music.cover_art_path})`;
+});
 
 loadMusic(current_music);
 
@@ -96,7 +111,6 @@ audio.addEventListener("play", () => {
 audio.addEventListener("ended", () => {
     current_music = (current_music + 1) % music_list.length;
     loadMusic(current_music);
-    // document.getElementById("progress").value = 0;
     audio.play();
 });
 
@@ -146,7 +160,6 @@ play_pause.addEventListener("click", () => {
 
 next.addEventListener("click", () => {
     current_music = (current_music + 1) % music_list.length;
-    // loadMusic(current_music);
     if (audio.paused) {
         loadMusic(current_music);
     } else {

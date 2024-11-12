@@ -75,10 +75,16 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #444444;
     gap: 0.8em;
     overflow: auto;
     padding: 0.8em;
     min-height: 100svh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    transition: all 0.2s ease-in-out;
 }
 
 .container {
@@ -89,8 +95,11 @@ body {
     padding: 1em;
     gap: 1em;
     border-radius: 2em;
-    background-color: #333333;
+    background-color: rgb(51, 51, 51, 0.6);
+    backdrop-filter: blur(0.8em);
+    -webkit-backdrop-filter: blur(0.8em);
     color: #ffffff;
+    transition: all 0.4s ease-in-out;
     @media (min-width: 768px) {
         width: 28em;
     }
@@ -142,8 +151,9 @@ body {
 
 .controls {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    width: 70%;
     gap: 0.6em;
     > div {
         display: flex;
@@ -160,18 +170,17 @@ body {
             color: #ffffff;
         }
     }
+    > #play-pause {
+        > svg {
+            width: 2.4em;
+        }
+    }
 }
 
 .progress-bar {
     display: flex;
     align-items: center;
     gap: 0.5em;
-}
-
-#current-time,
-#total-duration {
-    font-size: 0.9em;
-    /* color: #333; */
 }
 
 .music-list {
@@ -194,7 +203,7 @@ body {
             align-items: center;
             padding: 0.6em;
             gap: 1em;
-            background: #222222;
+            background: rgb(34, 34, 34, 0.6);
             border-radius: 0.4em;
             cursor: pointer;
             transition: all 0.4s ease-in-out;
