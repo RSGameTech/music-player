@@ -14,6 +14,13 @@
             <p id="music-name">Dil Tu Hi Bataa</p>
             <div class="music-player">
                 <audio id="audio" src="assets/audio/dil-tu-hi-bataa.mp3"></audio>
+                <div class="progress-bar">
+                    <div class="timer">
+                        <span id="current-time">00:00</span>
+                        <span id="total-duration">00:00</span>
+                    </div>
+                    <input type="range" id="progress" value="0" min="0" max="100" step="1" />
+                </div>
                 <div class="controls">
                     <div id="stop">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M18 18H6V6h12z" /></svg>

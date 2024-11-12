@@ -82,9 +82,10 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 26em;
+    width: 24em;
     padding: 1em;
     gap: 1em;
+    border-radius: 2em;
     /* height: 100svh; */
     background-color: #f0f0f0;
 }
@@ -98,6 +99,35 @@ body {
         aspect-ratio: 1/1;
         width: 100%;
         height: 100%;
+    }
+}
+
+.music-player {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    width: 100%;
+}
+
+.progress-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    > .timer {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        color: #333;
+    }
+    > #progress {
+        width: 100%;
+        height: 0.5em;
+        /* background-color: #e0e0e0; */
+        /* position: relative; */
     }
 }
 
@@ -121,4 +151,16 @@ body {
             color: #ffffff;
         }
     }
+}
+
+.progress-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+#current-time,
+#total-duration {
+    font-size: 0.9em;
+    color: #333;
 }
