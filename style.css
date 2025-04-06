@@ -84,6 +84,8 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
+    backdrop-filter: blur(0.4em);
+    -webkit-backdrop-filter: blur(0.4em);
     transition: all 0.2s ease-in-out;
 }
 
